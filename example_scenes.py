@@ -332,7 +332,7 @@ class UpdatersExample(Scene):
         now = self.time
         w0 = square.get_width()
         square.add_updater(
-            lambda m: m.set_width(w0 * math.cos(self.time - now))
+            lambda m: m.set_width(w0 * math.sin(self.time - now) + w0)
         )
         self.wait(4 * PI)
 
@@ -342,7 +342,7 @@ class CoordinateSystemExample(Scene):
         axes = Axes(
             # x-axis ranges from -1 to 10, with a default step size of 1
             x_range=(-1, 10),
-            # y-axis ranges from -2 to 10 with a step size of 0.5
+            # y-axis ranges from -2 to 2 with a step size of 0.5
             y_range=(-2, 2, 0.5),
             # The axes will be stretched so as to match the specified
             # height and width
@@ -639,14 +639,14 @@ class ControlsExample(Scene):
         self.checkbox = Checkbox()
         self.color_picker = ColorSliders()
         self.panel = ControlPanel(
-            Text("Text", size=0.5), self.textbox, Line(),
-            Text("Show/Hide Text", size=0.5), self.checkbox, Line(),
-            Text("Color of Text", size=0.5), self.color_picker
+            Text("Text", font_size=24), self.textbox, Line(),
+            Text("Show/Hide Text", font_size=24), self.checkbox, Line(),
+            Text("Color of Text", font_size=24), self.color_picker
         )
         self.add(self.panel)
 
     def construct(self):
-        text = Text("", size=2)
+        text = Text("text", font_size=96)
 
         def text_updater(old_text):
             assert(isinstance(old_text, Text))
